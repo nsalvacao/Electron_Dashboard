@@ -1,0 +1,37 @@
+[
+  {
+    "backupId": "backup_2025-07-17T07-38-12-675Z",
+    "timestamp": "2025-07-17T07-38-12-675Z",
+    "type": "full",
+    "files": [
+      {
+        "path": "C:\\GitHub\\Nexo_Dashboard\\data\\apps_custom.json",
+        "size": 3,
+        "checksum": "sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+      },
+      {
+        "path": "C:\\GitHub\\Nexo_Dashboard\\data\\apps_startmenu.json",
+        "size": 43147,
+        "checksum": "sha256:f5023f7cb0e815cfcb3ca363f4d74a62d15f83479119aaa47287c199ac67875c"
+      },
+      {
+        "path": "C:\\GitHub\\Nexo_Dashboard\\data\\apps_startmenu.json.bak",
+        "size": 42480,
+        "checksum": "sha256:58b6fa68f6c6c2955d3a1144e2b327c91fca5d124ecd5d9fc14215de27288a0a"
+      },
+      {
+        "path": "C:\\GitHub\\Nexo_Dashboard\\data\\links_web.json",
+        "size": 185827,
+        "checksum": "sha256:14a1734c110e3ceebdba875c1f0910bd054704a8d241ea1aab6e15c702c441e9"
+      },
+      {
+        "path": "C:\\GitHub\\Nexo_Dashboard\\data\\links_web.json.bak",
+        "size": 185827,
+        "checksum": "sha256:14a1734c110e3ceebdba875c1f0910bd054704a8d241ea1aab6e15c702c441e9"
+      }
+    ],
+    "totalSize": 457284,
+    "compressedSize": 146910,
+    "compressionRatio": 0.3212664339885061
+  }
+]

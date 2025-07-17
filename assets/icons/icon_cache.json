@@ -1,0 +1,34 @@
+{
+    "1895ab41ad3a81f6fd0a194bbc337a22": {
+        "path": {
+            "32x32": "C:/GitHub/Nexo_Dashboard/assets/icons\\bookmarks\\github_32x32.png",
+            "64x64": "C:/GitHub/Nexo_Dashboard/assets/icons\\bookmarks\\github_64x64.png"
+        },
+        "source": "https://www.github.com",
+        "type": "bookmark"
+    },
+    "8ffdefbdec956b595d257f0aaeefd623": {
+        "path": {
+            "32x32": "C:/GitHub/Nexo_Dashboard/assets/icons\\bookmarks\\google_32x32.png",
+            "64x64": "C:/GitHub/Nexo_Dashboard/assets/icons\\bookmarks\\google_64x64.png"
+        },
+        "source": "https://www.google.com",
+        "type": "bookmark"
+    },
+    "89be9bf79e9232bf66bef89c3dd8c891": {
+        "path": {
+            "32x32": "C:/GitHub/Nexo_Dashboard/assets/icons\\apps\\notepad_32x32.png",
+            "64x64": "C:/GitHub/Nexo_Dashboard/assets/icons\\apps\\notepad_64x64.png"
+        },
+        "source": "C:\\Windows\\System32\\notepad.exe",
+        "type": "app"
+    },
+    "3f1d643f83e8a7995331e521353487ca": {
+        "path": {
+            "32x32": "C:/GitHub/Nexo_Dashboard/assets/icons\\apps\\calculator_32x32.png",
+            "64x64": "C:/GitHub/Nexo_Dashboard/assets/icons\\apps\\calculator_64x64.png"
+        },
+        "source": "C:\\Windows\\System32\\calc.exe",
+        "type": "app"
+    }
+}

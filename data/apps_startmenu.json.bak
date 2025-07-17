@@ -4,9 +4,7 @@
     "path": "C:\\Program Files (x86)\\Adobe\\Acrobat Reader DC\\Reader\\AcroRd32.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-06-06T13:14:38.0000000Z",
     "fileSize": 4200856
@@ -16,9 +14,7 @@
     "path": "C:\\Program Files (x86)\\Belarc\\BelarcAdvisor\\BelarcAdvisor.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-02-21T13:35:32.0000000Z",
     "fileSize": 166704
@@ -136,9 +132,7 @@
     "path": "C:\\Program Files (x86)\\Local\\Local.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-09T15:22:32.2925042Z",
     "fileSize": 169215392
@@ -148,9 +142,7 @@
     "path": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\setup.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-08T23:47:27.6179538Z",
     "fileSize": 3131800
@@ -184,9 +176,7 @@
     "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-10T07:06:56.4966708Z",
     "fileSize": 4113472
@@ -360,9 +350,7 @@
     "path": "C:\\Program Files\\Apache NetBeans\\bin\\netbeans64.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-04-10T19:22:58.0000000Z",
     "fileSize": 294912
@@ -372,9 +360,7 @@
     "path": "C:\\Program Files\\Audacity\\Audacity.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-06-11T08:00:14.0000000Z",
     "fileSize": 13283888
@@ -384,9 +370,7 @@
     "path": "C:\\Program Files\\AutoHotkey\\Compiler\\Ahk2Exe.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2022-12-07T10:59:15.2448844Z",
     "fileSize": 989696
@@ -396,9 +380,7 @@
     "path": "C:\\Program Files\\AutoHotkey\\UX\\AutoHotkeyUX.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-08T17:28:21.9355564Z",
     "fileSize": 1279488
@@ -408,9 +390,7 @@
     "path": "C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-16T06:40:02.7407990Z",
     "fileSize": 3168848
@@ -468,9 +448,7 @@
     "path": "C:\\Program Files\\draw.io\\draw.io.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-05-26T17:12:00.0000000Z",
     "fileSize": 200715240
@@ -528,9 +506,7 @@
     "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-07T23:51:36.0519600Z",
     "fileSize": 3196512
@@ -601,9 +577,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:14.3415527Z",
     "fileSize": 73047336
@@ -613,9 +587,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\MSACCESS.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:14.5369738Z",
     "fileSize": 20122952
@@ -625,9 +597,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\MSPUB.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:14.6584672Z",
     "fileSize": 13648208
@@ -637,9 +607,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\ONENOTE.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:14.8101733Z",
     "fileSize": 3005176
@@ -649,9 +617,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:15.0542715Z",
     "fileSize": 45073232
@@ -661,9 +627,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\POWERPNT.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:15.1642684Z",
     "fileSize": 1881368
@@ -685,9 +649,7 @@
     "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-11T19:55:16.4791742Z",
     "fileSize": 1769704
@@ -697,9 +659,7 @@
     "path": "C:\\Program Files\\Microsoft OneDrive\\OneDrive.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-12T16:03:41.0754060Z",
     "fileSize": 4968296
@@ -709,9 +669,7 @@
     "path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\Blend.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-08T23:56:54.0893071Z",
     "fileSize": 1065056
@@ -735,9 +693,7 @@
     "path": "C:\\Program Files\\Mozilla Thunderbird\\thunderbird.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-09T12:50:08.2540348Z",
     "fileSize": 480320
@@ -808,9 +764,7 @@
     "path": "C:\\Program Files\\Notepad++\\notepad++.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-08T23:41:18.0000000Z",
     "fileSize": 8719360
@@ -892,9 +846,7 @@
     "path": "C:\\Program Files\\Rainmeter\\Rainmeter.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-04-12T17:31:28.0000000Z",
     "fileSize": 469432
@@ -952,9 +904,7 @@
     "path": "C:\\Users\\nunos\\AppData\\Local\\Programs\\jan\\Jan.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-05-14T11:27:52.0000000Z",
     "fileSize": 177040016
@@ -964,9 +914,7 @@
     "path": "C:\\Users\\nunos\\AppData\\Local\\Programs\\LM Studio\\LM Studio.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-06-13T23:53:56.0000000Z",
     "fileSize": 188938368
@@ -988,9 +936,7 @@
     "path": "C:\\Users\\nunos\\AppData\\Local\\Programs\\Obsidian\\Obsidian.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-04-21T15:48:42.0000000Z",
     "fileSize": 190591440
@@ -1126,9 +1072,7 @@
     "path": "C:\\WINDOWS\\Installer\\{FE9F6D2C-A292-4552-A748-A2DFD5984F6C}\\wsl.ico",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-07-08T11:29:32.4172783Z",
     "fileSize": 64582
@@ -1225,9 +1169,7 @@
     "path": "C:\\WINDOWS\\system32\\control.exe",
     "version": null,
     "publisher": null,
-    "tags": [
-      "General"
-    ],
+    "tags": [],
     "category": "General",
     "lastModified": "2025-05-11T18:47:08.2661584Z",
     "fileSize": 122880

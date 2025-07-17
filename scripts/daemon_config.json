@@ -1,0 +1,18 @@
+{
+  "intervals": {
+    "startMenu": "*/30 * * * *",
+    "bookmark": "0 */2 * * *"
+  },
+  "paths": {
+    "startMenuScript": "C:\\GitHub\\Nexo_Dashboard\\scripts\\scan_startmenu.ps1",
+    "bookmarkScript": "C:\\GitHub\\Nexo_Dashboard\\scripts\\extract_bookmarks.py",
+    "startMenuData": "C:\\GitHub\\Nexo_Dashboard\\data\\apps_startmenu.json",
+    "bookmarkData": "C:\\GitHub\\Nexo_Dashboard\\data\\links_web.json"
+  },
+  "options": {
+    "retryAttempts": 3,
+    "retryDelay": 5000,
+    "enableLogging": true,
+    "backupOnChange": true
+  }
+}

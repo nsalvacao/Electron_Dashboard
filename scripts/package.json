@@ -1,0 +1,16 @@
+{
+  "name": "nexo-dashboard-scripts",
+  "version": "1.0.0",
+  "description": "Scripts for Nexo Dashboard data refresh.",
+  "main": "refresh_daemon.js",
+  "scripts": {
+    "test": "node test_daemon.js"
+  },
+  "author": "Nexo",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "node-cron": "^3.0.0"
+  }
+}
