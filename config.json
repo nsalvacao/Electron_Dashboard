@@ -1,0 +1,50 @@
+{
+  "projectPath": "auto-detect",
+  "dataPath": "./data",
+  "assetsPath": "./assets",
+  "logsPath": "./0_Electron_Docs_Reference/Dev_Logs",
+  "iconsPath": "./assets/icons",
+  "backupPath": "./data/backups",
+  "refreshInterval": 300000,
+  "maxLogFiles": 100,
+  "enableBackup": true,
+  "platform": {
+    "win32": {
+      "startMenuPath": "%PROGRAMDATA%\\Microsoft\\Windows\\Start Menu",
+      "userStartMenuPath": "%APPDATA%\\Microsoft\\Windows\\Start Menu",
+      "browserPaths": {
+        "edge": "%LOCALAPPDATA%\\Microsoft\\Edge\\User Data\\Default\\Bookmarks",
+        "chrome": "%LOCALAPPDATA%\\Google\\Chrome\\User Data\\Default\\Bookmarks",
+        "firefox": "%APPDATA%\\Mozilla\\Firefox\\Profiles"
+      }
+    },
+    "linux": {
+      "applicationsPath": "/usr/share/applications",
+      "userApplicationsPath": "~/.local/share/applications",
+      "browserPaths": {
+        "chrome": "~/.config/google-chrome/Default/Bookmarks",
+        "firefox": "~/.mozilla/firefox"
+      }
+    },
+    "darwin": {
+      "applicationsPath": "/Applications",
+      "userApplicationsPath": "~/Applications",
+      "browserPaths": {
+        "chrome": "~/Library/Application Support/Google/Chrome/Default/Bookmarks",
+        "firefox": "~/Library/Application Support/Firefox/Profiles"
+      }
+    }
+  },
+  "features": {
+    "autoRefresh": true,
+    "iconExtraction": true,
+    "bookmarkSync": true,
+    "backupRotation": true,
+    "crossPlatformPaths": true
+  },
+  "validation": {
+    "validateJsonOnLoad": true,
+    "validatePathsOnStartup": true,
+    "strictMode": false
+  }
+}

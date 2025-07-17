@@ -1,236 +1,439 @@
----
-
-titulo: "Nexo Dashboard"
-versao: "v1.0"
-data\_criacao: 2025-07-16
-ultima\_atualizacao: 2025-07-16
-node: \["ModelingNode"]
-proposito: \["Project Documentation"]
-origem: \["Canvas"]
-reutilizavel: true
-status: "ativo"
-dependencias: \[]
-tags: \["electron", "dashboard", "readme"]
-escopo: "local"
-privacidade: "privado"
-acessibilidade: "GPTBuilder"
-----------------------------
-
 # Nexo Dashboard
 
 ![MIT License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node.js >=14](https://img.shields.io/badge/node-%3E=14.0.0-brightgreen)
 ![Electron](https://img.shields.io/badge/built%20with-electron-blue)
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
+
+**Dashboard cross-platform para gestão centralizada de aplicações e bookmarks**
 
 ---
 
-## Overview
+## 📋 Visão Geral
 
-**Nexo Dashboard** is a cross-platform desktop application built with Electron. It enables you to display and launch applications, scripts, and web links in an organized and customizable interface. The dashboard automatically scans the Windows Start Menu for installed applications, supports manual entries for portable or custom apps, and allows quick access to categorized web bookmarks.
+O **Nexo Dashboard** é uma aplicação desktop cross-platform construída com Electron que oferece uma interface moderna e intuitiva para gestão e lançamento de aplicações, scripts e links web. Com funcionalidades avançadas de pesquisa, organização por categorias e temas personalizáveis, transforma a forma como acedes às tuas ferramentas de trabalho.
 
----
+### ✨ Principais Características
 
-## Features
-
-### Local Applications
-
-* Automatic synchronization with Windows Start Menu shortcuts (auto-refresh).
-* Manual management of portable and custom applications (via editable JSON).
-* Simple organization and maintenance using categories, tags, and filters.
-
-### Web Bookmarks
-
-* Import and organize bookmarks from Edge/Chrome using JSON.
-* Categorization, tagging, and two-level menu navigation for fast discovery.
-* Responsive, card-based UI with built-in search and filtering.
+- **🔍 Pesquisa Inteligente** - Sistema de busca em tempo real com debouncing otimizado
+- **🎨 Interface Adaptativa** - 4 modos de visualização (Normal, Compacta, Confortável, Lista)
+- **🌙 Sistema de Temas** - Dark/Light mode com deteção automática do sistema
+- **⌨️ Navegação Híbrida** - Controlos por mouse e atalhos de teclado
+- **🏷️ Gestão de Categorias** - Tags coloridas com filtragem clicável
+- **🖱️ Drag & Drop** - Reordenação visual de elementos
+- **⚙️ Settings Avançados** - Painel de configurações com persistência
 
 ---
 
-## Quick Start
+## 🚀 Quick Start
 
-For sample configuration, see the files in the `data/` folder.
+### Pré-requisitos
+- **Node.js** v14+ 
+- **npm** v6+
+- **Windows 10+** (recomendado) ou macOS/Linux
 
-1. **Clone or download this repository.**
-2. **Install dependencies:**
+### Instalação Rápida
 
+1. **Clonar o repositório:**
+   ```bash
+   git clone https://github.com/nsalvacao/Nexo_Dashboard.git
+   cd Nexo_Dashboard
+   ```
+
+2. **Instalar dependências:**
    ```bash
    npm install
    ```
-3. **Launch in development mode:**
 
+3. **Executar em modo desenvolvimento:**
    ```bash
    npm run start
    ```
-4. **Package for distribution:**
 
+4. **Construir para distribuição:**
    ```bash
    npm run build
    ```
 
 ---
 
-## Installation
+## 🎯 Como Usar o Dashboard
 
-1. Ensure Node.js (v14+) and npm are installed on your system.
-2. In the project root, install dependencies:
+### Primeira Execução
 
-   ```bash
-   npm install
-   ```
-3. *(Optional)* Install Electron globally for CLI usage:
+1. **Lance a aplicação** com `npm run start`
+2. **Aguarde o carregamento** dos dados (apps e bookmarks)
+3. **Explore as funcionalidades** através da interface principal
 
-   ```bash
-   npm install -g electron
-   ```
+### Interface Principal
+
+#### 🗂️ Navegação por Tabs
+- **Aplicações** - Apps do sistema e personalizados
+- **Bookmarks** - Links web organizados por categoria
+
+#### 🔍 Sistema de Pesquisa
+- **Caixa de pesquisa** no header para busca global
+- **Filtros por categoria** para refinar resultados
+- **Ordenação** por nome, categoria ou última modificação
+- **Escape** para limpar pesquisa rapidamente
+
+#### 🎛️ Controlos de Vista
+Botões na barra de navegação para alternar entre:
+- **📋 Normal** - Layout equilibrado (280px cards)
+- **📊 Compacta** - Máxima densidade (220px cards)  
+- **📰 Confortável** - Espaçamento generoso (320px cards)
+- **📝 Lista** - Vista linear horizontal
+
+#### 🏷️ Sistema de Tags
+- **Tags coloridas** por categoria (Development, Productivity, System, Entertainment)
+- **Clique numa tag** para filtrar instantaneamente
+- **Hover effects** com animações suaves
+
+### ⌨️ Atalhos de Teclado
+
+| Ação | Atalho | Descrição |
+|------|--------|-----------|
+| **Pesquisar** | `Ctrl+F` | Focar na caixa de pesquisa |
+| **Atualizar** | `Ctrl+R` | Refresh dos dados |
+| **Aplicações** | `Ctrl+1` | Mudar para tab Aplicações |
+| **Bookmarks** | `Ctrl+2` | Mudar para tab Bookmarks |
+| **Alterar Vista** | `Shift+↑/↓` | Ciclar entre modos de vista |
+| **Alternar Tema** | `Shift+T` | Dark/Light/Auto theme |
+| **Ajuda** | `?` | Mostrar atalhos disponíveis |
+
+### ⚙️ Painel de Configurações
+
+Acesso via botão **\"Configurações\"** no footer ou menu da aplicação:
+
+#### 🎨 Aparência
+- **Tema:** Automático, Claro, Escuro
+- **Vista padrão:** Normal, Compacta, Confortável, Lista
+
+#### 🔧 Comportamento  
+- **Atualização automática:** Toggle para refresh periódico
+- **Arrastar e largar:** Ativar/desativar reordenação
+
+#### 🔍 Pesquisa
+- **Atraso de pesquisa:** Configurar debouncing (100-1000ms)
+
+### 🖱️ Interações Avançadas
+
+#### Drag & Drop
+- **Arrastar cards** para reordenar elementos
+- **Visual feedback** durante operação
+- **Reordenação mantida** durante a sessão
+
+#### Menu Contextual
+- **Clique direito** nos cards para opções avançadas
+- **Abrir** - Lançar aplicação/link
+- **Mostrar na pasta** - Localizar ficheiro (apps)
 
 ---
 
-## Platform Support & Prerequisites
+## 📁 Estrutura de Dados
 
-* **Windows:** 10 or higher (64-bit). PowerShell is required for Start Menu scanning.
-* **macOS & Linux:** Basic Electron support (manual path management for custom entries).
-* **General prerequisites:**
+### Ficheiros de Configuração
 
-  * Node.js (v14+)
-  * npm (v6+)
-  * *(Optional)* Python/Bash for advanced scripts.
+O Dashboard utiliza ficheiros JSON para gestão de dados:
 
----
-
-## API & Extensibility
-
-The dashboard exposes both a Node.js API (for internal scripting) and a CLI command for ad-hoc scans and integration:
-
-### Node.js API
-
-```js
-const { scanStartMenu, loadJSON } = require('./scripts/helpers');
-
-// Scan Start Menu and update apps_startmenu.json
-testscanStartMenu();
-
-// Load custom apps and web links
-const customApps = loadJSON('data/apps_custom.json');
-const webLinks   = loadJSON('data/links_web.json');
+#### `data/apps_startmenu.json`
+Apps automaticamente detetados do Start Menu (Windows):
+```json
+{
+  \"name\": \"Visual Studio Code\",
+  \"path\": \"C:\\\\Users\\\\...\\\\Code.exe\",
+  \"category\": \"Development\",
+  \"tags\": [\"code\", \"editor\"],
+  \"version\": \"1.85.0\"
+}
 ```
 
-### CLI Usage
-
-```bash
-# Launch a one-off scan from project root
-node scripts/scan_startmenu.js
-
-# Or via npm script (if configured):
-npm run scan
+#### `data/apps_custom.json`  
+Apps personalizados adicionados manualmente:
+```json
+{
+  \"name\": \"Portable App\",
+  \"path\": \"D:\\\\Tools\\\\app.exe\",
+  \"category\": \"Utility\",
+  \"tags\": [\"portable\", \"tool\"]
+}
 ```
 
-These interfaces enable integration into external workflows, scheduled tasks, or automation scripts.
+#### `data/links_web.json`
+Bookmarks web organizados:
+```json
+{
+  \"name\": \"GitHub\",
+  \"url\": \"https://github.com\",
+  \"category\": \"Development\",
+  \"tags\": [\"git\", \"repository\"],
+  \"favicon\": \"https://github.com/favicon.ico\"
+}
+```
+
+### Gestão de Dados
+
+#### Atualização Automática
+- **Scan Start Menu** executa automaticamente (Windows)
+- **Deteção de mudanças** em apps instalados/removidos
+- **Backup automático** antes de atualizações
+
+#### Gestão Manual
+- **Editar ficheiros JSON** diretamente para apps personalizados
+- **Importar bookmarks** de browsers suportados
+- **Validação automática** da integridade dos dados
 
 ---
 
-## Configuration Files
+## 🏗️ Arquitetura Técnica
 
-* **data/apps\_startmenu.json:** Auto-generated list of Start Menu apps.
-* **data/apps\_custom.json:** Manually managed portable or custom apps.
-* **data/links\_web.json:** Web bookmarks loaded at startup.
-
----
-
-## Architecture
-
-Nexo Dashboard follows a modular, maintainable structure:
-
-* **Main Process** (`src/main.js`): Handles file I/O, scanning, and the main application window.
-* **Renderer Process** (`src/renderer.js`): Renders the UI and manages user interaction.
-* **Scripts** (`scripts/`): Utilities for scanning and parsing shortcuts, data import/export.
-* **Data** (`data/`): JSON configuration files—your single source of truth.
-* **Assets** (`assets/icons/`): Icons for apps and links.
-
----
-
-## Project Structure
+### Estrutura do Projeto
 
 ```
 Nexo_Dashboard/
-├── assets/                    # Static assets (icons, images)
-│   └── icons/                 # Application and link icons
-├── data/                      # JSON configuration files (apps and web links)
-│   ├── apps_startmenu.json    # Auto-generated Start Menu apps
-│   ├── apps_custom.json       # User-defined portable/custom apps
-│   └── links_web.json         # Imported web bookmarks
-├── scripts/                   # Utility scripts for scanning and parsing
-│   ├── scan_startmenu.js
-│   └── helpers.js
-├── src/                       # Source code for main and renderer processes
-│   ├── main.js                # Electron main process entry
-│   ├── renderer.js            # Browser UI logic
-│   ├── index.html             # Dashboard HTML template
-│   └── style.css              # Dashboard styling
-├── package.json               # Node/Electron project metadata and dependencies
-└── README.md                  # Project documentation
+├── 📁 src/                      # Código fonte principal
+│   ├── 🎯 main.js              # Processo principal Electron
+│   ├── 🖥️ renderer.js          # Lógica da interface (Phase 2)
+│   ├── 🌐 index.html           # Template HTML responsive
+│   └── 🎨 style.css            # Styling moderno com themes
+├── 📁 data/                     # Dados de configuração
+│   ├── 📝 apps_startmenu.json  # Apps do sistema (auto-generated)
+│   ├── 📝 apps_custom.json     # Apps personalizados
+│   └── 📝 links_web.json       # Bookmarks web
+├── 📁 utils/                    # Utilitários cross-platform
+│   ├── 🛠️ path-resolver.js     # Resolução dinâmica de paths
+│   ├── 📊 logger.js            # Sistema de logging
+│   └── ⚠️ error-handler.js     # Gestão de erros
+├── 📁 scripts/                  # Scripts de automação
+│   ├── 🔍 scan_startmenu.ps1   # Scanner PowerShell (Windows)
+│   ├── 🎨 extract_icons.py     # Extração de ícones
+│   ├── 🔖 extract_bookmarks.py # Importação de bookmarks
+│   └── 🔄 backup_system.js     # Sistema de backup
+├── 📁 assets/                   # Assets estáticos
+│   ├── 🖼️ icon.png             # Ícone da aplicação
+│   └── 📁 icons/               # Ícones de apps/links
+├── 📋 package.json              # Configuração npm/Electron
+├── 🗺️ ROADMAP.md               # Roadmap técnico detalhado
+└── 📚 README.md                 # Esta documentação
+```
+
+### Tecnologias Utilizadas
+
+- **🖥️ Electron** - Framework cross-platform
+- **🎨 HTML5/CSS3** - Interface moderna e responsiva
+- **⚡ JavaScript ES6+** - Lógica de aplicação
+- **🗂️ JSON** - Armazenamento de configurações
+- **🔧 Node.js** - Runtime e utilitários
+- **🎯 PowerShell** - Integração Windows (opcional)
+- **🐍 Python** - Scripts de processamento (opcional)
+
+---
+
+## 🔧 Desenvolvimento e Customização
+
+### Scripts NPM Disponíveis
+
+```bash
+npm run start          # Executar em desenvolvimento
+npm run build          # Construir para distribuição  
+npm run pack           # Empacotar aplicação
+npm run dist           # Criar instaladores
+npm run clean          # Limpar builds anteriores
+```
+
+### Configuração de Desenvolvimento
+
+#### Variáveis de Ambiente
+```bash
+NODE_ENV=development    # Ativar DevTools
+NEXO_DATA_PATH=./data  # Path personalizado para dados
+NEXO_LOG_LEVEL=debug   # Nível de logging
+```
+
+#### Debugging
+- **DevTools automático** em modo desenvolvimento
+- **Console logging** estruturado
+- **Error tracking** com stack traces
+- **Performance monitoring** incorporado
+
+### Extensibilidade
+
+#### Adicionar Novas Categorias
+Editar `src/renderer.js` - método `getCategoryForTag()`:
+```javascript
+const categoryMap = {
+    'development': ['code', 'programming', 'ide'],
+    'productivity': ['office', 'text', 'document'],
+    'nova_categoria': ['keyword1', 'keyword2']
+};
+```
+
+#### Personalizar Temas
+Modificar `src/style.css` - variáveis CSS:
+```css
+:root {
+    --primary-color: #2196f3;
+    --success-color: #4caf50;
+    --custom-color: #your-color;
+}
 ```
 
 ---
 
-## Contributing
+## 🌐 Compatibilidade Cross-Platform
 
-Contributions, bug reports, and feature requests are welcome!
+### Windows (Recomendado)
+- ✅ **Funcionalidade completa** incluindo scan automático
+- ✅ **PowerShell integration** para Start Menu
+- ✅ **Icon extraction** nativo
+- ✅ **Registry access** para metadados
 
-1. Fork the repository and create your feature branch (`git checkout -b feature/my-feature`).
-2. Write clear, documented code and update or add tests where appropriate.
-3. Commit your changes (`git commit -m 'Add feature XYZ'`).
-4. Push to your fork and open a Pull Request.
-5. Describe your contribution and reference any related issues.
+### macOS  
+- ⚠️ **Funcionalidade core** disponível
+- ⚠️ **Gestão manual** de aplicações
+- ⚠️ **Scripts adaptados** necessários
 
-For major changes, please open an issue first to discuss your idea before submitting code.
-
----
-
-## Maintainer
-
-* **Nuno Salvação**
-  [nexo-modeling@outlook.com](mailto:nexo-modeling@outlook.com)
-
----
-
-## License
-
-This project is licensed under the MIT License — a permissive open source license that allows commercial and private use, modification, and distribution.
-See the [LICENSE](LICENSE) file for details.
+### Linux
+- ⚠️ **Funcionalidade básica** operacional  
+- ⚠️ **Apps detection** manual/custom
+- ⚠️ **Desktop files** parsing (futuro)
 
 ---
 
-## Uninstall
+## 🔍 Troubleshooting
 
-To remove the application (manual install cleanup):
+### Problemas Comuns
 
-1. **Delete the application folder.**
-2. **Remove user configuration files:**
+#### Dashboard não inicia
+```bash
+# Verificar dependências
+npm install --force
 
+# Limpar cache npm
+npm cache clean --force
+
+# Verificar versão Node.js
+node --version  # Deve ser >=14
+```
+
+#### Dados não carregam
+1. Verificar existência dos ficheiros em `data/`
+2. Validar formato JSON com ferramentas online
+3. Verificar permissões de leitura dos ficheiros
+4. Consultar logs em DevTools (F12)
+
+#### Performance lenta
+1. Reduzir **search delay** nas configurações
+2. Limitar número de **apps/bookmarks** ativos
+3. Desativar **animações** se necessário
+4. Fechar outras aplicações Electron
+
+#### Temas não funcionam
+1. Verificar **localStorage** disponível no browser
+2. **Reset settings** através do painel de configurações
+3. **Restart aplicação** após mudanças de tema
+
+### Logs e Debugging
+
+#### Localização dos Logs
+- **Console:** DevTools (F12) → Console
+- **Ficheiros:** `logs/nexo-dashboard-YYYY-MM-DD.log`
+
+#### Ativar Modo Debug
+```bash
+NODE_ENV=development npm run start
+```
+
+---
+
+## 🤝 Contribuições
+
+Contribuições são bem-vindas! Segue estas diretrizes:
+
+### Como Contribuir
+
+1. **Fork** o repositório
+2. **Criar branch** para a funcionalidade (`git checkout -b feature/nova-funcionalidade`)
+3. **Commit** das mudanças (`git commit -m 'Adicionar nova funcionalidade'`)
+4. **Push** para o branch (`git push origin feature/nova-funcionalidade`)
+5. **Abrir Pull Request** com descrição detalhada
+
+### Diretrizes de Código
+
+- **Seguir** convenções JavaScript ES6+
+- **Comentar** código complexo
+- **Testar** funcionalidades novas
+- **Manter** performance otimizada
+- **Respeitar** arquitetura existente
+
+---
+
+## 📈 Roadmap Futuro
+
+### Phase 3: Intelligence & Automation
+- 🤖 **AI-powered categorization** de apps
+- 📊 **Usage analytics** e tracking
+- 🔄 **Automated cleanup** de shortcuts órfãos
+- 🔔 **Smart notifications** para novas apps
+- 🖥️ **CLI interface** para automação
+
+### Phase 4: Advanced Features  
+- 👥 **Multi-profile support** 
+- ☁️ **Cloud sync** com encriptação
+- 🎨 **Advanced theming** engine
+- ♿ **Accessibility** melhorada
+- 📊 **Advanced reporting**
+
+### Phase 5: Distribution
+- 📦 **Standalone executables**
+- 🔄 **Auto-updater** system
+- 📱 **Desktop integration**
+- 🏢 **Enterprise deployment**
+
+---
+
+## 👤 Maintainer
+
+**Nuno Salvação**  
+📧 [nexo-modeling@outlook.com](mailto:nexo-modeling@outlook.com)  
+🐙 [GitHub Profile](https://github.com/nsalvacao)
+
+---
+
+## 📄 Licença
+
+Este projeto está licenciado sob **MIT License** - uma licença permissiva que permite uso comercial, modificação e distribuição.
+
+Consultar o ficheiro [LICENSE](LICENSE) para detalhes completos.
+
+---
+
+## 🙏 Agradecimentos
+
+- **[Electron Team](https://electronjs.org/)** - Framework fantástico
+- **[Node.js Community](https://nodejs.org/)** - Runtime robusto  
+- **Open Source Community** - Inspiração e ferramentas
+
+---
+
+## 🗑️ Desinstalação
+
+### Remoção Completa
+
+1. **Eliminar pasta** da aplicação
+2. **Limpar configurações** do utilizador:
    ```bash
+   # Windows
+   rmdir /s %APPDATA%\Nexo_Dashboard
+   
+   # macOS  
+   rm -rf ~/Library/Preferences/com.nexo.dashboard.plist
+   
+   # Linux
    rm -rf ~/.config/Nexo_Dashboard
    ```
-3. **Windows-specific:**
-
-   * Clear any Start Menu shortcuts created.
-   * (Optional) Remove registry entries:
-
-     ```powershell
-     Remove-Item -Path "HKCU:\Software\Nexo_Dashboard" -Recurse -ErrorAction SilentlyContinue
-     ```
-4. **macOS-specific:**
-
-   * Remove user preferences:
-
-     ```bash
-     rm -rf ~/Library/Preferences/com.nexo_dashboard.plist
-     ```
-5. **Package manager installs:**
-   If installed via a package manager or installer, use the corresponding uninstall command (e.g., `winget uninstall NexoDashboard` or `brew remove nexo-dashboard`).
+3. **Limpar LocalStorage** do browser (automático)
 
 ---
 
-## Acknowledgments
-
-* [Electron](https://www.electronjs.org/) team and contributors.
-* Inspiration from various dashboard UIs.
+*Desenvolvido com ❤️ por Nuno Salvação | Julho 2025*

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="../assets/icon.png" alt="Nexo Dashboard" class="logo-icon">
+                    <h1>Nexo Dashboard</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Pesquisar aplica��es e links..." class="search-input">
+                        <button class="search-button">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="refresh-button" id="refreshButton" title="Atualizar dados">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 3V9H9M21 21V15H15M20.49 9A9 9 0 0 0 5.64 5.64L3 9M3.51 15A9 9 0 0 0 18.36 18.36L21 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="applications">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                        <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                        <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                        <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Aplica��es
+                </button>
+                <button class="nav-tab" data-tab="bookmarks">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 21V5C19 4.46957 18.7893 3.96086 18.4142 3.58579C18.0391 3.21071 17.5304 3 17 3H7C6.46957 3 5.96086 3.21071 5.58579 3.58579C5.21071 3.96086 5 4.46957 5 5V21L12 17.5L19 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Bookmarks
+                </button>
+            </div>
+            <div class="nav-filters">
+                <div class="grid-controls">
+                    <button class="grid-size-btn active" data-size="default" title="Vista normal">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    <button class="grid-size-btn" data-size="compact" title="Vista compacta">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="5" height="5" stroke="currentColor" stroke-width="2"/>
+                            <rect x="10" y="3" width="5" height="5" stroke="currentColor" stroke-width="2"/>
+                            <rect x="17" y="3" width="4" height="5" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="10" width="5" height="5" stroke="currentColor" stroke-width="2"/>
+                            <rect x="10" y="10" width="5" height="5" stroke="currentColor" stroke-width="2"/>
+                            <rect x="17" y="10" width="4" height="5" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="17" width="5" height="4" stroke="currentColor" stroke-width="2"/>
+                            <rect x="10" y="17" width="5" height="4" stroke="currentColor" stroke-width="2"/>
+                            <rect x="17" y="17" width="4" height="4" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    <button class="grid-size-btn" data-size="comfortable" title="Vista confortável">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="8" height="8" stroke="currentColor" stroke-width="2"/>
+                            <rect x="13" y="3" width="8" height="8" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="13" width="8" height="8" stroke="currentColor" stroke-width="2"/>
+                            <rect x="13" y="13" width="8" height="8" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                    <button class="grid-size-btn" data-size="list" title="Vista lista">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="8" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6" stroke="currentColor" stroke-width="2"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">Todas as categorias</option>
+                </select>
+                <select id="sortBy" class="filter-select">
+                    <option value="name">Nome</option>
+                    <option value="category">Categoria</option>
+                    <option value="lastModified">Última modificação</option>
+                </select>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Loading state -->
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>A carregar dados...</p>
+            </div>
+
+            <!-- Applications Tab -->
+            <div id="applicationsTab" class="tab-content active">
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-label">Total:</span>
+                        <span class="stat-value" id="appsCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Filtradas:</span>
+                        <span class="stat-value" id="appsFilteredCount">0</span>
+                    </div>
+                </div>
+                <div class="grid-container" id="appsGrid">
+                    <!-- App cards will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Bookmarks Tab -->
+            <div id="bookmarksTab" class="tab-content">
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <span class="stat-label">Total:</span>
+                        <span class="stat-value" id="bookmarksCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Filtradas:</span>
+                        <span class="stat-value" id="bookmarksFilteredCount">0</span>
+                    </div>
+                </div>
+                <div class="grid-container" id="bookmarksGrid">
+                    <!-- Bookmark cards will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Empty state -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 2L7.17 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4H16.83L15 2H9ZM12 7C14.76 7 17 9.24 17 12C17 14.76 14.76 17 12 17C9.24 17 7 14.76 7 12C7 9.24 9.24 7 12 7Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3>Nenhum item encontrado</h3>
+                <p>Tenta ajustar os filtros ou atualizar os dados.</p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <span>Nexo Dashboard v<span id="appVersion">0.1.0</span></span>
+                    <span>"</span>
+                    <span id="itemsStatus">Pronto</span>
+                </div>
+                <div class="footer-actions">
+                    <button class="footer-button" id="aboutButton">Sobre</button>
+                    <button class="footer-button" id="settingsButton">Configura��es</button>
+                    <button class="footer-button" id="helpButton" title="Atalhos de teclado">?</button>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu hidden">
+        <div class="context-menu-item" id="openItem">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 2V8H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Abrir
+        </div>
+        <div class="context-menu-item" id="showInFolder">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22 19C22 19.5304 21.7893 20.0391 21.4142 20.4142C21.0391 20.7893 20.5304 21 20 21H4C3.46957 21 2.96086 20.7893 2.58579 20.4142C2.21071 20.0391 2 19.5304 2 19V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H9L11 5H20C20.5304 5 21.0391 5.21071 21.4142 5.58579C21.7893 5.96086 22 6.46957 22 7V19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Mostrar na pasta
+        </div>
+    </div>
+
+    <!-- Modal for About -->
+    <div id="aboutModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Sobre o Nexo Dashboard</h3>
+                <button class="modal-close" id="closeAboutModal">�</button>
+            </div>
+            <div class="modal-body">
+                <div class="about-info">
+                    <img src="../assets/icon.png" alt="Nexo Dashboard" class="about-icon">
+                    <h4>Nexo Dashboard</h4>
+                    <p class="version">Vers�o <span id="aboutVersion">0.1.0</span></p>
+                    <p class="description">Dashboard cross-platform para gest�o centralizada de aplica��es e bookmarks.</p>
+                    <div class="about-details">
+                        <p><strong>Autor:</strong> Nuno Salva��o</p>
+                        <p><strong>Licen�a:</strong> MIT</p>
+                        <p><strong>Plataforma:</strong> <span id="aboutPlatform"></span></p>
+                        <p><strong>Electron:</strong> <span id="aboutElectron"></span></p>
+                        <p><strong>Node.js:</strong> <span id="aboutNode"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Configurações</h3>
+                <button class="modal-close" id="closeSettingsModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h4>Aparência</h4>
+                    <div class="setting-item">
+                        <label for="themeSelect">Tema:</label>
+                        <select id="themeSelect" class="setting-select">
+                            <option value="auto">Automático</option>
+                            <option value="light">Claro</option>
+                            <option value="dark">Escuro</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="gridSizeSelect">Vista padrão:</label>
+                        <select id="gridSizeSelect" class="setting-select">
+                            <option value="default">Normal</option>
+                            <option value="compact">Compacta</option>
+                            <option value="comfortable">Confortável</option>
+                            <option value="list">Lista</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>Comportamento</h4>
+                    <div class="setting-item">
+                        <label for="autoRefresh">Atualização automática:</label>
+                        <input type="checkbox" id="autoRefresh" class="setting-checkbox">
+                    </div>
+                    <div class="setting-item">
+                        <label for="enableDragDrop">Arrastar e largar:</label>
+                        <input type="checkbox" id="enableDragDrop" class="setting-checkbox" checked>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h4>Pesquisa</h4>
+                    <div class="setting-item">
+                        <label for="searchDelay">Atraso de pesquisa (ms):</label>
+                        <input type="number" id="searchDelay" class="setting-input" value="300" min="100" max="1000" step="100">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button secondary" id="resetSettings">Repor padrões</button>
+                <button class="modal-button primary" id="saveSettings">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Keyboard shortcuts help -->
+    <div id="shortcutsHint" class="shortcuts-hint">
+        <div class="shortcut-item">
+            <span>Pesquisar</span>
+            <span class="shortcut-key">Ctrl+F</span>
+        </div>
+        <div class="shortcut-item">
+            <span>Atualizar</span>
+            <span class="shortcut-key">Ctrl+R</span>
+        </div>
+        <div class="shortcut-item">
+            <span>Aplicações</span>
+            <span class="shortcut-key">Ctrl+1</span>
+        </div>
+        <div class="shortcut-item">
+            <span>Bookmarks</span>
+            <span class="shortcut-key">Ctrl+2</span>
+        </div>
+        <div class="shortcut-item">
+            <span>Alterar Vista</span>
+            <span class="shortcut-key">Shift+↑/↓</span>
+        </div>
+        <div class="shortcut-item">
+            <span>Alternar Tema</span>
+            <span class="shortcut-key">Shift+T</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="renderer.js"></script>
+</body>
+</html>

@@ -20,11 +20,11 @@
 
 .PARAMETER OutputPath
     Specifies the full path for the output JSON file.
-    Default: C:\GitHub\Nexo_Dashboard\data\apps_startmenu.json
+    Default: Auto-detected from project configuration
 
 .PARAMETER LogPath
     Specifies the directory for the log file.
-    Default: C:\GitHub\Nexo_Dashboard\0_Electron_Docs_Reference\Dev_Logs
+    Default: Auto-detected from project configuration
 
 .PARAMETER IncrementalOnly
     If specified, the script will only write the output file if changes are detected compared to the existing file.
@@ -48,10 +48,18 @@
     Date: 2025-07-16
 #>
 param(
-    [string]$OutputPath = "C:\GitHub\Nexo_Dashboard\data\apps_startmenu.json",
-    [string]$LogPath = "C:\GitHub\Nexo_Dashboard\0_Electron_Docs_Reference\Dev_Logs",
+    [string]$OutputPath = "",
+    [string]$LogPath = "",
     [switch]$IncrementalOnly
 )
+
+# Import path resolution helper
+. (Join-Path -Path $PSScriptRoot -ChildPath "path-helper.ps1")
+
+# Get dynamic paths
+$paths = Get-NexoPaths
+if (-not $OutputPath) { $OutputPath = Get-DataFilePath -Filename "apps_startmenu.json" }
+if (-not $LogPath) { $LogPath = $paths.Logs }
 
 # --- SCRIPT CONFIGURATION ---
 $global:LogFile = Join-Path -Path $LogPath -ChildPath "nexo_startmenu_scanner_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"

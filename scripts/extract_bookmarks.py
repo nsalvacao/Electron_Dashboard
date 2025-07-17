@@ -1,5 +1,6 @@
 
 import os
+import sys
 import json
 import sqlite3
 import argparse
@@ -7,24 +8,85 @@ from datetime import datetime, timedelta
 import shutil
 import base64
 from urllib.parse import urlparse
+import platform
+
+# Add utils directory to path for imports
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'utils'))
+
+try:
+    from path_resolver import PathResolver
+    HAS_PATH_RESOLVER = True
+except ImportError:
+    HAS_PATH_RESOLVER = False
+    print("Warning: PathResolver not found, using fallback paths")
 
 # --- CONFIGURATION ---
 
-# Expand environment variables to get the correct paths
-BROWSER_PATHS = {
-    'edge': os.path.expandvars(r'%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Bookmarks'),
-    'chrome': os.path.expandvars(r'%LOCALAPPDATA%\Google\Chrome\User Data\Default\Bookmarks'),
-    'firefox': os.path.expandvars(r'%APPDATA%\Mozilla\Firefox\Profiles'),
-    'brave': os.path.expandvars(r'%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Bookmarks')
-}
+def get_browser_paths():
+    """Get browser paths based on platform"""
+    system = platform.system().lower()
+    home = os.path.expanduser('~')
+    
+    if system == 'windows':
+        return {
+            'edge': os.path.expandvars(r'%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Bookmarks'),
+            'chrome': os.path.expandvars(r'%LOCALAPPDATA%\Google\Chrome\User Data\Default\Bookmarks'),
+            'firefox': os.path.expandvars(r'%APPDATA%\Mozilla\Firefox\Profiles'),
+            'brave': os.path.expandvars(r'%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Bookmarks')
+        }
+    elif system == 'linux':
+        return {
+            'chrome': os.path.join(home, '.config/google-chrome/Default/Bookmarks'),
+            'firefox': os.path.join(home, '.mozilla/firefox'),
+            'brave': os.path.join(home, '.config/BraveSoftware/Brave-Browser/Default/Bookmarks')
+        }
+    elif system == 'darwin':
+        return {
+            'chrome': os.path.join(home, 'Library/Application Support/Google/Chrome/Default/Bookmarks'),
+            'firefox': os.path.join(home, 'Library/Application Support/Firefox/Profiles'),
+            'brave': os.path.join(home, 'Library/Application Support/BraveSoftware/Brave-Browser/Default/Bookmarks')
+        }
+    else:
+        return {}
 
-FAVICON_PATHS = {
-    'edge': os.path.expandvars(r'%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Favicons'),
-    'chrome': os.path.expandvars(r'%LOCALAPPDATA%\Google\Chrome\User Data\Default\Favicons'),
-    'brave': os.path.expandvars(r'%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Favicons')
-}
+def get_favicon_paths():
+    """Get favicon paths based on platform"""
+    system = platform.system().lower()
+    home = os.path.expanduser('~')
+    
+    if system == 'windows':
+        return {
+            'edge': os.path.expandvars(r'%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Favicons'),
+            'chrome': os.path.expandvars(r'%LOCALAPPDATA%\Google\Chrome\User Data\Default\Favicons'),
+            'brave': os.path.expandvars(r'%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Favicons')
+        }
+    elif system == 'linux':
+        return {
+            'chrome': os.path.join(home, '.config/google-chrome/Default/Favicons'),
+            'brave': os.path.join(home, '.config/BraveSoftware/Brave-Browser/Default/Favicons')
+        }
+    elif system == 'darwin':
+        return {
+            'chrome': os.path.join(home, 'Library/Application Support/Google/Chrome/Default/Favicons'),
+            'brave': os.path.join(home, 'Library/Application Support/BraveSoftware/Brave-Browser/Default/Favicons')
+        }
+    else:
+        return {}
 
-OUTPUT_FILE = os.path.join('C:\\', 'GitHub', 'Nexo_Dashboard', 'data', 'links_web.json')
+def get_output_file():
+    """Get output file path using PathResolver or fallback"""
+    if HAS_PATH_RESOLVER:
+        path_resolver = PathResolver()
+        return path_resolver.get_data_file('links_web.json')
+    else:
+        # Fallback to relative path
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        return os.path.join(project_root, 'data', 'links_web.json')
+
+# Initialize paths
+BROWSER_PATHS = get_browser_paths()
+FAVICON_PATHS = get_favicon_paths()
+OUTPUT_FILE = get_output_file()
 
 # --- HELPER FUNCTIONS ---
 

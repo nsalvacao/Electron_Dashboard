@@ -1,23 +1,51 @@
 
 
-import win32gui
-import win32ui
-import win32con
-import win32api
-
 import os
+import sys
 import requests
-import pefile
 from PIL import Image
 import hashlib
 import json
 import datetime
 import struct
 
+# Add utils directory to path for imports
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'utils'))
+
+try:
+    from path_resolver import PathResolver
+    HAS_PATH_RESOLVER = True
+except ImportError:
+    HAS_PATH_RESOLVER = False
+    print("Warning: PathResolver not found, using fallback paths")
+
+# Platform-specific imports
+try:
+    import win32gui
+    import win32ui
+    import win32con
+    import win32api
+    import pefile
+    HAS_WIN32 = True
+except ImportError:
+    HAS_WIN32 = False
+    print("Warning: win32 modules not available, some functionality will be limited")
+
 class IconExtractor:
-    def __init__(self, assets_path='C:/GitHub/Nexo_Dashboard/assets/icons', log_path='C:/GitHub/Nexo_Dashboard/0_Electron_Docs_Reference/Dev_Logs'):
-        self.assets_path = assets_path
-        self.log_path = log_path
+    def __init__(self, assets_path=None, log_path=None):
+        if HAS_PATH_RESOLVER:
+            self.path_resolver = PathResolver()
+            self.assets_path = assets_path or self.path_resolver.get_path('icons')
+            self.log_path = log_path or self.path_resolver.get_path('logs')
+        else:
+            # Fallback to relative paths
+            project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            self.assets_path = assets_path or os.path.join(project_root, 'assets', 'icons')
+            self.log_path = log_path or os.path.join(project_root, '0_Electron_Docs_Reference', 'Dev_Logs')
+        
+        os.makedirs(self.assets_path, exist_ok=True)
+        os.makedirs(self.log_path, exist_ok=True)
+        
         self.cache_path = os.path.join(self.assets_path, 'icon_cache.json')
         self.icon_cache = self._load_cache()
         self._setup_logging()
@@ -57,6 +85,10 @@ class IconExtractor:
 
         output_dir = os.path.join(self.assets_path, 'apps')
         os.makedirs(output_dir, exist_ok=True)
+        
+        if not HAS_WIN32:
+            self._log('- Result: win32 modules not available, using fallback icon.')
+            return self.generate_fallback_icon(app_name, 'app')
         
         try:
             large, small = win32gui.ExtractIconEx(exe_path, 0)
@@ -224,7 +256,7 @@ Desenvolver utilitário para extrair, processar e gerir ícones de aplicações 
 
 ### Especificações Técnicas
 - **Linguagem:** Python 3.8+ com PIL/Pillow
-- **Localização:** `C:\GitHub\Nexo_Dashboard\scripts\extract_icons.py`
+- **Localização:** Dynamic path resolution
 - **Output:** `assets/icons/` directory
 - **Formatos:** PNG, ICO, SVG
 
@@ -303,7 +335,7 @@ icons = extractor.process_icon_batch(app_list)
 ```
 
 ### Logging e Output
-Gera um ficheiro de output em `C:\GitHub\Nexo_Dashboard\0_Electron_Docs_Reference\Dev_Logs` com o registo de:
+Gera um ficheiro de output no diretório de logs com o registo de:
 - a) o prompt que te dei,
 - b) output do teu raciocínio,
 - c) as tuas respostas para mim,

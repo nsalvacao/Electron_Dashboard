@@ -5,17 +5,51 @@ const path = require('path');
 const AdmZip = require('adm-zip');
 const crypto = require('crypto');
 
+// Try to import PathResolver
+let PathResolver;
+let hasPathResolver = false;
+try {
+    PathResolver = require('../utils/path-resolver.js');
+    hasPathResolver = true;
+} catch (error) {
+    console.warn('PathResolver not found, using fallback paths');
+}
+
 class BackupSystem {
     constructor() {
-        this.basePath = path.join('C:', 'GitHub', 'Nexo_Dashboard');
-        this.backupDir = path.join(this.basePath, 'data', 'backups');
+        if (hasPathResolver) {
+            this.pathResolver = PathResolver.getInstance();
+            this.basePath = this.pathResolver.getPath('root');
+            this.backupDir = this.pathResolver.getPath('backup');
+            this.logPath = this.pathResolver.getPath('logs');
+            this.dataToBackup = this.pathResolver.getPath('data');
+        } else {
+            // Fallback to relative paths
+            this.basePath = path.dirname(path.dirname(__filename));
+            this.backupDir = path.join(this.basePath, 'data', 'backups');
+            this.logPath = path.join(this.basePath, '0_Electron_Docs_Reference', 'Dev_Logs');
+            this.dataToBackup = path.join(this.basePath, 'data');
+        }
+        
         this.dailyDir = path.join(this.backupDir, 'daily');
         this.incrementalDir = path.join(this.backupDir, 'incremental');
         this.metadataDir = path.join(this.backupDir, 'metadata');
         this.catalogPath = path.join(this.metadataDir, 'backup_catalog.json');
-        this.logPath = path.join(this.basePath, '0_Electron_Docs_Reference', 'Dev_Logs');
-        this.dataToBackup = path.join(this.basePath, 'data');
         this._setupLogging();
+        this._ensureDirectoriesExist();
+    }
+
+    async _ensureDirectoriesExist() {
+        const directories = [this.backupDir, this.dailyDir, this.incrementalDir, this.metadataDir, this.logPath];
+        for (const dir of directories) {
+            try {
+                await fs.mkdir(dir, { recursive: true });
+            } catch (error) {
+                if (error.code !== 'EEXIST') {
+                    console.error(`Failed to create directory ${dir}:`, error);
+                }
+            }
+        }
     }
 
     async _setupLogging() {
