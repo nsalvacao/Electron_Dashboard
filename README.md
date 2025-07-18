@@ -26,6 +26,11 @@ O **Nexo Dashboard** é uma aplicação desktop cross-platform construída com E
 - **🔄 Persistência de Dados** - Sistema híbrido que preserva customizações durante atualizações automáticas
 - **🎭 Feedback Visual** - Notificações, barras de progresso e confirmações visuais
 - **⚙️ Preferências Avançadas** - Configurações completas para aparência, comportamento e acessibilidade
+- **🤖 Integração AI Multi-Provider** - Suporte para Ollama, OpenAI, Anthropic, OpenRouter e Hugging Face
+- **🔐 Configuração Segura** - Encriptação local de chaves API e configurações sensíveis
+- **💰 Monitorização de Custos** - Tracking em tempo real com limites e alertas automáticos
+- **🔄 Sistema de Fallback** - Mudança automática entre provedores AI para máxima fiabilidade
+- **🛡️ Privacidade por Design** - Filtragem de dados e processamento local prioritário
 
 ---
 
@@ -132,6 +137,34 @@ Acesso via botão **\"Configurações\"** no footer ou menu da aplicação:
 - **Abrir** - Lançar aplicação/link
 - **Mostrar na pasta** - Localizar ficheiro (apps)
 
+### 🤖 Integração AI
+
+#### Configuração Multi-Provider
+O Nexo Dashboard suporta múltiplos provedores AI com configuração simples:
+
+**Provedores Locais:**
+- **Ollama** - Modelos locais gratuitos (detecção automática)
+- **Configuração zero** se Ollama estiver instalado
+
+**Provedores Externos:**
+- **OpenAI** - GPT-3.5, GPT-4 (requer API key)
+- **Anthropic** - Claude 3, Claude 3.5 Sonnet (requer API key)
+- **OpenRouter** - Acesso a múltiplos modelos (requer API key)
+- **Hugging Face** - Modelos open source (API key opcional)
+
+#### Funcionalidades AI
+- **Categorização Inteligente** - Organização automática de apps e bookmarks
+- **Sugestões Contextuais** - Recomendações baseadas em padrões de uso
+- **Processamento Local** - Privacidade garantida com modelos Ollama
+- **Controlo de Custos** - Monitorização em tempo real e limites configuráveis
+- **Fallback Automático** - Mudança seamless entre provedores
+
+#### Configuração Rápida
+1. **Instalar Ollama** (opcional mas recomendado): `https://ollama.ai`
+2. **Configurar APIs** através do painel de configurações
+3. **Testar conectividade** com validation automática
+4. **Definir limites** de custo e uso conforme necessário
+
 ---
 
 ## 📁 Estrutura de Dados
@@ -199,11 +232,25 @@ Nexo_Dashboard/
 │   ├── 🎯 main.js              # Processo principal Electron
 │   ├── 🖥️ renderer.js          # Lógica da interface (Phase 2)
 │   ├── 🌐 index.html           # Template HTML responsive
-│   └── 🎨 style.css            # Styling moderno com themes
+│   ├── 🎨 style.css            # Styling moderno com themes
+│   ├── 📁 ai-integration/       # Sistema AI Multi-Provider
+│   │   ├── 🤖 AIProviderManager.js  # Gestor central de provedores
+│   │   ├── 📁 providers/        # Provedores AI específicos
+│   │   │   ├── 🦙 OllamaProvider.js    # Integração Ollama
+│   │   │   ├── 🤖 OpenAIProvider.js    # Integração OpenAI
+│   │   │   ├── 🔮 AnthropicProvider.js # Integração Anthropic
+│   │   │   ├── 🚀 OpenRouterProvider.js # Integração OpenRouter
+│   │   │   └── 🤗 HuggingFaceProvider.js # Integração Hugging Face
+│   │   └── 📁 utils/            # Utilitários AI
+│   │       ├── 🔐 AIConfiguration.js   # Configuração segura
+│   │       ├── 💰 CostTracker.js       # Monitorização de custos
+│   │       ├── 🔄 FallbackManager.js   # Sistema de fallback
+│   │       └── 🛡️ PrivacyManager.js    # Gestão de privacidade
 ├── 📁 data/                     # Dados de configuração
 │   ├── 📝 apps_startmenu.json  # Apps do sistema (auto-generated)
 │   ├── 📝 apps_custom.json     # Apps personalizados
-│   └── 📝 links_web.json       # Bookmarks web
+│   ├── 📝 links_web.json       # Bookmarks web
+│   └── 📁 ai-config/           # Configurações AI (encriptadas)
 ├── 📁 utils/                    # Utilitários cross-platform
 │   ├── 🛠️ path-resolver.js     # Resolução dinâmica de paths
 │   ├── 📊 logger.js            # Sistema de logging
@@ -230,6 +277,14 @@ Nexo_Dashboard/
 - **🔧 Node.js** - Runtime e utilitários
 - **🎯 PowerShell** - Integração Windows (opcional)
 - **🐍 Python** - Scripts de processamento (opcional)
+- **🤖 AI Integration** - Sistema multi-provider
+  - **🦙 Ollama** - Modelos locais (llama2, codellama, mistral)
+  - **🤖 OpenAI** - GPT-3.5, GPT-4 models
+  - **🔮 Anthropic** - Claude 3, Claude 3.5 Sonnet
+  - **🚀 OpenRouter** - Multi-model access
+  - **🤗 Hugging Face** - Open source models
+- **🔐 Crypto** - Encriptação AES-256 para dados sensíveis
+- **💰 Cost Management** - Tracking e alertas em tempo real
 
 ---
 
