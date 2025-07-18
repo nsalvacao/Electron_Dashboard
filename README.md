@@ -19,9 +19,13 @@ O **Nexo Dashboard** é uma aplicação desktop cross-platform construída com E
 - **🎨 Interface Adaptativa** - 4 modos de visualização (Normal, Compacta, Confortável, Lista)
 - **🌙 Sistema de Temas** - Dark/Light mode com deteção automática do sistema
 - **⌨️ Navegação Híbrida** - Controlos por mouse e atalhos de teclado
-- **🏷️ Gestão de Categorias** - Tags coloridas com filtragem clicável
-- **🖱️ Drag & Drop** - Reordenação visual de elementos
-- **⚙️ Settings Avançados** - Painel de configurações com persistência
+- **🏷️ Gestão Visual de Categorias** - Interface completa para criação e edição com cores e ícones
+- **🏷️ Sistema de Tags Avançado** - Gestão visual de tags com operações em lote e pesquisa
+- **🖱️ Drag & Drop Inteligente** - Reordenação visual com zonas de drop e feedback em tempo real
+- **⚙️ Painel de Customização** - Interface completa para personalização e organização de dados
+- **🔄 Persistência de Dados** - Sistema híbrido que preserva customizações durante atualizações automáticas
+- **🎭 Feedback Visual** - Notificações, barras de progresso e confirmações visuais
+- **⚙️ Preferências Avançadas** - Configurações completas para aparência, comportamento e acessibilidade
 
 ---
 
