@@ -1,0 +1,6 @@
+{
+  "test-provider": {
+    "monthlyLimit": 10,
+    "alertThreshold": 0.8
+  }
+}
