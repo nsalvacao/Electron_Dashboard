@@ -7,8 +7,17 @@
     "start": "electron .",
     "dev": "NODE_ENV=development electron .",
     "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
     "dist": "electron-builder --publish=never",
+    "dist:win": "electron-builder --win --publish=never",
+    "dist:all": "electron-builder --mac --win --linux --publish=never",
+    "pack": "electron-builder --dir",
+    "pack:win": "electron-builder --win --dir",
     "clean": "rimraf dist/",
+    "prebuild": "npm run clean && npm run generate-icons",
+    "prepack": "npm run clean && npm run generate-icons",
     "lint": "eslint src/",
     "test": "jest",
     "validate": "node scripts/validate-portability.js",
@@ -16,8 +25,10 @@
     "scan-startmenu": "powershell -ExecutionPolicy Bypass -File scripts/scan_startmenu.ps1",
     "extract-bookmarks": "python scripts/extract_bookmarks.py",
     "extract-icons": "python scripts/extract_icons.py",
+    "generate-icons": "node scripts/generate_icons.js",
     "backup": "node scripts/backup_system.js",
-    "refresh-data": "npm run scan-startmenu && npm run extract-bookmarks"
+    "refresh-data": "npm run scan-startmenu && npm run extract-bookmarks",
+    "release": "npm run build && npm run dist"
   },
   "keywords": [
     "electron",
@@ -47,7 +58,9 @@
     "electron-builder": "^24.6.4",
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "sharp": "^0.34.3",
+    "to-ico": "^1.1.5"
   },
   "dependencies": {
     "adm-zip": "^0.5.12",
@@ -56,8 +69,10 @@
   "build": {
     "appId": "com.nexo.dashboard",
     "productName": "Nexo Dashboard",
+    "copyright": "Copyright © 2025 Nuno Salvação",
     "directories": {
-      "output": "dist"
+      "output": "dist",
+      "buildResources": "build"
     },
     "files": [
       "src/**/*",
@@ -65,20 +80,99 @@
       "data/**/*",
       "assets/**/*",
       "config.json",
-      "package.json"
+      "package.json",
+      "!**/*.md",
+      "!**/*.txt",
+      "!**/test*",
+      "!**/*.log"
+    ],
+    "extraFiles": [
+      {
+        "from": "scripts/",
+        "to": "scripts/",
+        "filter": [
+          "**/*.ps1",
+          "**/*.py",
+          "**/*.js"
+        ]
+      }
     ],
     "mac": {
       "category": "public.app-category.productivity",
-      "icon": "assets/icon.icns"
+      "icon": "assets/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
     },
     "win": {
-      "target": "nsis",
-      "icon": "assets/icon.ico"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "Nuno Salvação",
+      "verifyUpdateCodeSignature": false,
+      "sign": false,
+      "signAndEditExecutable": false,
+      "signDlls": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Nexo Dashboard",
+      "displayLanguageSelector": true,
+      "license": "LICENSE",
+      "artifactName": "Nexo-Dashboard-${version}-Setup.${ext}",
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": false,
+      "menuCategory": "Productivity",
+      "include": "build/installer.nsh"
     },
     "linux": {
-      "target": "AppImage",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "icon": "assets/icon.png",
-      "category": "Utility"
+      "category": "Utility",
+      "desktop": {
+        "Name": "Nexo Dashboard",
+        "Comment": "Cross-platform dashboard for applications and bookmarks",
+        "Categories": "Utility;Productivity;Office;",
+        "Keywords": "dashboard;launcher;productivity;applications;bookmarks;"
+      }
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "nsalvacao",
+      "repo": "Nexo_Dashboard"
     }
   },
   "engines": {

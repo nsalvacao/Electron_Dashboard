@@ -31,6 +31,9 @@ O **Nexo Dashboard** é uma aplicação desktop cross-platform construída com E
 - **💰 Monitorização de Custos** - Tracking em tempo real com limites e alertas automáticos
 - **🔄 Sistema de Fallback** - Mudança automática entre provedores AI para máxima fiabilidade
 - **🛡️ Privacidade por Design** - Filtragem de dados e processamento local prioritário
+- **📦 Instalador Profissional** - Instalador Windows com integração nativa no sistema
+- **🔧 Integração Desktop** - Ícones automáticos no desktop e Start Menu
+- **🌐 Cross-Platform Ready** - Suporte para Windows, macOS e Linux
 
 ---
 
@@ -41,7 +44,21 @@ O **Nexo Dashboard** é uma aplicação desktop cross-platform construída com E
 - **npm** v6+
 - **Windows 10+** (recomendado) ou macOS/Linux
 
-### Instalação Rápida
+### 📦 Instalação via Instalador Windows (Recomendado)
+
+1. **Download do Instalador:**
+   - Faz download do ficheiro `Nexo-Dashboard-Setup.exe` da secção [Releases](https://github.com/nsalvacao/Nexo_Dashboard/releases)
+
+2. **Execução do Instalador:**
+   - Executa o instalador e segue o assistente de instalação
+   - Escolhe o diretório de instalação (opcional)
+   - O instalador criará automaticamente ícones no desktop e no Start Menu
+
+3. **Execução:**
+   - Clica no ícone do desktop ou procura "Nexo Dashboard" no Start Menu
+   - A aplicação será executada de forma nativa no Windows
+
+### 🛠️ Instalação para Desenvolvimento
 
 1. **Clonar o repositório:**
    ```bash
@@ -61,7 +78,17 @@ O **Nexo Dashboard** é uma aplicação desktop cross-platform construída com E
 
 4. **Construir para distribuição:**
    ```bash
-   npm run build
+   # Windows installer
+   npm run build:win
+   
+   # macOS package
+   npm run build:mac
+   
+   # Linux packages
+   npm run build:linux
+   
+   # Todos os platforms
+   npm run dist:all
    ```
 
 ---
