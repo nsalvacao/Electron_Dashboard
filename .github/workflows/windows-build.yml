@@ -18,18 +18,15 @@ name: 🪟 Windows Build & Release
 # Define quando o workflow é executado
 on:
   # Executa em pushes para o branch main
+  # Executa quando tags de versão são criadas (v1.0.0, v1.0.1, etc.)
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
     paths-ignore:
       - '**.md'
       - 'docs/**'
       - '.gitignore'
-      - 'LICENSE'
-  
-  # Executa quando tags de versão são criadas (v1.0.0, v1.0.1, etc.)
-  push:
-    tags: [ 'v*' ]
-  
+      - 'LICENSE'  
   # Permite execução manual via GitHub UI
   workflow_dispatch:
 
