@@ -26,6 +26,15 @@
       "tags": ["photo", "editing", "adobe"],
       "description": "Photo editing software",
       "enabled": true
+    },
+    {
+      "name": "Editor de Código",
+      "path": "/path/to/codigo",
+      "icon": "codigo.png",
+      "category": "Development",
+      "tags": ["editor", "código"],
+      "description": "Editor com suporte a acentos",
+      "enabled": true
     }
   ]
 }

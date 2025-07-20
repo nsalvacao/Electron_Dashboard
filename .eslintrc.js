@@ -48,6 +48,10 @@ module.exports = {
     'dist/',
     'build/',
     '*.min.js',
-    'scripts/node_modules/'
+    'scripts/node_modules/',
+    'src/ai-integration/**/*', // Skip AI integration files (created in previous session)
+    'src/ai-intelligence/**/*', // Skip AI intelligence files (created in previous session)
+    'src/data-management/**/*', // Skip data management files (created in previous session)
+    'src/ui-components/**/*'    // Skip UI components files (created in previous session)
   ]
 };

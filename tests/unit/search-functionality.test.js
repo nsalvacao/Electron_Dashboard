@@ -59,6 +59,14 @@ describe('🔍 Search Functionality Tests', () => {
           category: 'Development',
           tags: ['editor', 'code'],
           description: 'Simple code editor'
+        },
+        {
+          name: 'Editor de Código',
+          path: '/path/to/codigo',
+          icon: 'codigo.png',
+          category: 'Development',
+          tags: ['editor', 'código'],
+          description: 'Editor com suporte a acentos'
         }
       ]
     };
@@ -192,7 +200,7 @@ describe('🔍 Search Functionality Tests', () => {
     
     test('should find items by name', () => {
       const results = searchItems(mockAppsData.apps, 'code');
-      expect(results).toHaveLength(2); // Visual Studio Code + Code Editor
+      expect(results).toHaveLength(2); // Visual Studio Code + Code Editor (não inclui "Editor de Código")
       
       const names = results.map(item => item.name);
       expect(names).toContain('Visual Studio Code');
@@ -301,7 +309,7 @@ describe('🔍 Search Functionality Tests', () => {
   describe('📂 Category Filtering Tests', () => {
     test('should filter by category', () => {
       const devApps = filterByCategory(mockAppsData.apps, 'Development');
-      expect(devApps.length).toBe(2); // Visual Studio Code + Código Editor
+      expect(devApps.length).toBe(3); // Visual Studio Code + Code Editor + Editor de Código
       
       const internetApps = filterByCategory(mockAppsData.apps, 'Internet');
       expect(internetApps.length).toBe(1); // Chrome Browser
@@ -334,7 +342,7 @@ describe('🔍 Search Functionality Tests', () => {
   describe('🏷️ Tag Filtering Tests', () => {
     test('should filter by single tag', () => {
       const editorApps = filterByTags(mockAppsData.apps, ['editor']);
-      expect(editorApps.length).toBe(2); // Visual Studio Code + Código Editor
+      expect(editorApps.length).toBe(3); // Visual Studio Code + Code Editor + Editor de Código
     });
     
     test('should filter by multiple tags (OR logic)', () => {
