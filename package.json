@@ -28,7 +28,11 @@
     "generate-icons": "node scripts/generate_icons.js",
     "backup": "node scripts/backup_system.js",
     "refresh-data": "npm run scan-startmenu && npm run extract-bookmarks",
-    "release": "npm run build && npm run dist"
+    "release": "npm run build && npm run dist",
+    "ci:install": "npm ci --prefer-offline --no-audit --no-fund",
+    "ci:build": "npm run clean && npm run generate-icons && npm run dist:win",
+    "ci:test": "npm run lint && npm run test",
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [
     "electron",

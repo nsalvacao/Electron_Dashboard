@@ -1,0 +1,254 @@
+# =============================================================================
+# GitHub Actions Workflow: Windows Build & Release
+# =============================================================================
+# Este workflow automatiza a criação de instaladores Windows (.exe) para 
+# o Nexo Dashboard usando electron-builder em ambiente Windows nativo.
+#
+# Triggers:
+# - Push para branch main (builds de desenvolvimento)
+# - Tags v* (builds de release: v1.0.0, v1.0.1, etc.)
+#
+# Outputs:
+# - Artefactos de build (.exe) disponíveis para download
+# - Releases automáticos para tags (opcional)
+# =============================================================================
+
+name: 🪟 Windows Build & Release
+
+# Define quando o workflow é executado
+on:
+  # Executa em pushes para o branch main
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.gitignore'
+      - 'LICENSE'
+  
+  # Executa quando tags de versão são criadas (v1.0.0, v1.0.1, etc.)
+  push:
+    tags: [ 'v*' ]
+  
+  # Permite execução manual via GitHub UI
+  workflow_dispatch:
+
+# Configurações globais do workflow
+env:
+  # Versão do Node.js (pode ser ajustada conforme necessário)
+  NODE_VERSION: '20.x'
+  # Nome da aplicação (usado em artefactos)
+  APP_NAME: 'NexoDashboard'
+
+jobs:
+  # =============================================================================
+  # Job: Windows Build
+  # =============================================================================
+  windows-build:
+    name: 🔨 Build Windows Installer
+    runs-on: windows-latest
+    
+    # Timeout de 30 minutos (ajustar se necessário)
+    timeout-minutes: 30
+    
+    steps:
+    # -------------------------------------------------------------------------
+    # Step 1: Checkout do Código
+    # -------------------------------------------------------------------------
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        # Busca histórico completo para versioning
+        fetch-depth: 0
+    
+    # -------------------------------------------------------------------------
+    # Step 2: Setup Node.js
+    # -------------------------------------------------------------------------
+    - name: 🟢 Setup Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        # Cache npm para acelerar builds subsequentes
+        cache: 'npm'
+    
+    # -------------------------------------------------------------------------
+    # Step 3: Verificar Versões (Debug)
+    # -------------------------------------------------------------------------
+    - name: 🔍 Verify Environment
+      run: |
+        echo "Node.js version: $(node --version)"
+        echo "NPM version: $(npm --version)"
+        echo "OS version: $env:OS"
+        echo "Runner: $env:RUNNER_NAME"
+    
+    # -------------------------------------------------------------------------
+    # Step 4: Instalar Dependências
+    # -------------------------------------------------------------------------
+    - name: 📦 Install Dependencies
+      run: |
+        echo "Installing npm dependencies..."
+        npm ci --prefer-offline --no-audit --no-fund
+        echo "Dependencies installed successfully!"
+    
+    # -------------------------------------------------------------------------
+    # Step 5: Executar Testes (se existirem)
+    # -------------------------------------------------------------------------
+    - name: 🧪 Run Tests
+      run: |
+        # Verifica se há testes configurados
+        if (npm run | Select-String "test") {
+          echo "Running tests..."
+          npm test
+        } else {
+          echo "No tests configured, skipping..."
+        }
+      continue-on-error: false
+    
+    # -------------------------------------------------------------------------
+    # Step 6: Build da Aplicação
+    # -------------------------------------------------------------------------
+    - name: 🏗️ Build Application
+      run: |
+        echo "Building Electron application for Windows..."
+        # Usa o script de build específico para Windows
+        npm run dist:win
+        echo "Build completed successfully!"
+      env:
+        # Variáveis para electron-builder
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Desabilita telemetria para builds mais rápidos
+        ELECTRON_BUILDER_CACHE: false
+    
+    # -------------------------------------------------------------------------
+    # Step 7: Listar Ficheiros Gerados (Debug)
+    # -------------------------------------------------------------------------
+    - name: 📋 List Generated Files
+      run: |
+        echo "Files generated in dist folder:"
+        if (Test-Path "dist") {
+          Get-ChildItem -Path "dist" -Recurse | Where-Object { $_.Extension -eq ".exe" } | Format-Table Name, Length, LastWriteTime
+        } else {
+          echo "⚠️ Dist folder not found!"
+          exit 1
+        }
+    
+    # -------------------------------------------------------------------------
+    # Step 8: Upload Artefactos de Build
+    # -------------------------------------------------------------------------
+    - name: 📤 Upload Windows Installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.APP_NAME }}-Windows-Installer-${{ github.sha }}
+        path: |
+          dist/*.exe
+          dist/*.msi
+          dist/*.appx
+        # Manter artefactos por 30 dias
+        retention-days: 30
+        # Compressão para uploads mais rápidos
+        compression-level: 6
+    
+    # -------------------------------------------------------------------------
+    # Step 9: Upload Ficheiros de Debug (opcional)
+    # -------------------------------------------------------------------------
+    - name: 📤 Upload Build Debug Files
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: ${{ env.APP_NAME }}-Build-Debug-${{ github.sha }}
+        path: |
+          dist/builder-debug.yml
+          *.log
+          npm-debug.log*
+        retention-days: 7
+    
+    # -------------------------------------------------------------------------
+    # Step 10: Preparar Release (apenas para tags)
+    # -------------------------------------------------------------------------
+    - name: 🚀 Prepare Release Assets
+      if: startsWith(github.ref, 'refs/tags/v')
+      id: release-assets
+      run: |
+        # Criar diretório para assets de release
+        mkdir release-assets
+        
+        # Copiar instaladores para pasta de release
+        if (Test-Path "dist/*.exe") {
+          Copy-Item "dist/*.exe" "release-assets/"
+        }
+        
+        # Gerar checksums para verificação de integridade
+        Get-ChildItem "release-assets/*.exe" | ForEach-Object {
+          $hash = Get-FileHash $_.FullName -Algorithm SHA256
+          "$($hash.Hash.ToLower())  $($_.Name)" | Out-File "release-assets/$($_.BaseName).sha256" -Encoding UTF8
+        }
+        
+        echo "Release assets prepared in release-assets folder"
+    
+    # -------------------------------------------------------------------------
+    # Step 11: Criar GitHub Release (apenas para tags)
+    # -------------------------------------------------------------------------
+    - name: 🎉 Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v1
+      with:
+        # Título do release baseado na tag
+        name: Release ${{ github.ref_name }}
+        # Corpo do release (pode ser customizado)
+        body: |
+          ## 🪟 Windows Release ${{ github.ref_name }}
+          
+          ### 📦 Downloads
+          - **Windows Installer (.exe)**: Instalador com wizard completo
+          - **Checksums (.sha256)**: Para verificação de integridade
+          
+          ### 📋 Installation Instructions
+          1. Download the `.exe` file
+          2. Run as administrator if needed
+          3. Follow the installation wizard
+          4. Launch Nexo Dashboard from Start Menu or Desktop shortcut
+          
+          ### 🔒 Security
+          Verify file integrity using the provided SHA256 checksums before installation.
+          
+          ---
+          **Built with**: Node.js ${{ env.NODE_VERSION }} | Electron Builder | GitHub Actions
+        # Anexar ficheiros da pasta release-assets
+        files: |
+          release-assets/*
+        # Não criar como draft (pode ser alterado para true se necessário)
+        draft: false
+        # Não marcar como pre-release (pode ser alterado baseado na tag)
+        prerelease: ${{ contains(github.ref_name, '-') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+# =============================================================================
+# Notas para Personalização:
+# =============================================================================
+# 
+# 1. VERSÕES:
+#    - NODE_VERSION: Ajustar conforme package.json engines
+#    - Actions versions: Manter atualizadas
+# 
+# 2. BUILDS MULTI-PLATAFORMA:
+#    - Adicionar jobs para macOS (macos-latest) e Linux (ubuntu-latest)
+#    - Usar strategy matrix para builds paralelos
+# 
+# 3. SCRIPTS PERSONALIZADOS:
+#    - Verificar se npm run dist:win existe em package.json
+#    - Adicionar steps personalizados conforme necessário
+# 
+# 4. SEGURANÇA:
+#    - GITHUB_TOKEN é automático, outros secrets devem ser configurados
+#    - Code signing requer certificados (opcional)
+# 
+# 5. PERFORMANCE:
+#    - Cache de dependências já configurado
+#    - Pode adicionar cache para electron downloads
+# 
+# 6. NOTIFICAÇÕES:
+#    - Adicionar steps para Slack/Discord/email se necessário
+#    - Integração com sistemas de monitorização
+# 
+# =============================================================================

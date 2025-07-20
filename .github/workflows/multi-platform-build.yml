@@ -1,0 +1,85 @@
+# =============================================================================
+# GitHub Actions Workflow: Multi-Platform Build (Future Expansion)
+# =============================================================================
+# Este workflow está preparado para builds multi-plataforma quando necessário.
+# Atualmente comentado, mas pode ser ativado facilmente.
+#
+# Suporta: Windows, macOS, Linux
+# Triggers: Manual ou tags específicas
+# =============================================================================
+
+name: 🌍 Multi-Platform Build
+
+# Comentado por defeito - descomentar quando necessário
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       platforms:
+#         description: 'Platforms to build'
+#         required: true
+#         default: 'windows,macos,linux'
+#         type: choice
+#         options:
+#         - windows
+#         - macos  
+#         - linux
+#         - windows,macos
+#         - windows,linux
+#         - macos,linux
+#         - windows,macos,linux
+#   
+#   push:
+#     tags: [ 'v*-multi' ]
+
+# jobs:
+#   multi-build:
+#     name: 🔨 Build ${{ matrix.os }}
+#     runs-on: ${{ matrix.os }}
+#     
+#     strategy:
+#       matrix:
+#         include:
+#           - os: windows-latest
+#             platform: windows
+#             script: dist:win
+#             artifact: '*.exe'
+#           - os: macos-latest  
+#             platform: macos
+#             script: dist:mac
+#             artifact: '*.dmg'
+#           - os: ubuntu-latest
+#             platform: linux  
+#             script: dist:linux
+#             artifact: '*.AppImage'
+#     
+#     steps:
+#     - name: 📥 Checkout
+#       uses: actions/checkout@v4
+#       
+#     - name: 🟢 Setup Node.js
+#       uses: actions/setup-node@v4
+#       with:
+#         node-version: '20.x'
+#         cache: 'npm'
+#         
+#     - name: 📦 Install Dependencies
+#       run: npm ci
+#       
+#     - name: 🏗️ Build ${{ matrix.platform }}
+#       run: npm run ${{ matrix.script }}
+#       
+#     - name: 📤 Upload Artifacts
+#       uses: actions/upload-artifact@v4
+#       with:
+#         name: NexoDashboard-${{ matrix.platform }}-${{ github.sha }}
+#         path: dist/${{ matrix.artifact }}
+
+# =============================================================================
+# Instruções para Ativação:
+# 
+# 1. Descomentar o workflow acima
+# 2. Verificar se os scripts dist:mac e dist:linux existem em package.json
+# 3. Testar builds localmente primeiro
+# 4. Adicionar secrets necessários (certificados para macOS, etc.)
+# 
+# =============================================================================

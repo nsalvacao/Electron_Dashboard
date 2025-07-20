@@ -522,4 +522,54 @@ Consultar o ficheiro [LICENSE](LICENSE) para detalhes completos.
 
 ---
 
+## 🚀 CI/CD & Releases Automáticos
+
+### GitHub Actions Workflow
+
+O projeto inclui um sistema de CI/CD automatizado que:
+
+- **🪟 Builds Windows**: Executados automaticamente em `windows-latest`
+- **📦 Instaladores**: Geração automática de ficheiros `.exe` com wizard completo
+- **🔄 Triggers**: Ativado em push para `main` e tags `v*` (ex: v1.0.0)
+- **📤 Artefactos**: Downloads automáticos disponíveis em Actions
+- **🎉 Releases**: Criação automática de releases para tags
+
+### Como Funciona
+
+1. **Push/Merge para `main`**: Build de desenvolvimento
+2. **Tag de versão** (v1.0.0): Build de release + GitHub Release automático
+3. **Download**: Artefactos disponíveis na tab Actions
+4. **Instalação**: Executar o `.exe` como administrador
+
+### Scripts CI Disponíveis
+
+```bash
+# Scripts otimizados para CI/CD
+npm run ci:install    # Instalação rápida de dependências
+npm run ci:build      # Build completo para Windows
+npm run ci:test       # Linting + Testes
+
+# Scripts de desenvolvimento
+npm run dist:win      # Build Windows local
+npm run clean         # Limpar dist/
+npm run generate-icons # Gerar ícones
+```
+
+### Requisitos do Sistema CI
+
+- **Node.js**: >=16.0.0 (configurado para 20.x no workflow)
+- **Windows Runner**: Para builds nativos Windows
+- **Electron Builder**: Para criação de instaladores
+
+### Verificação de Builds
+
+**Instalador Válido deve ter:**
+- Tamanho: ~50-100MB (não 600KB)
+- Wizard de instalação funcional
+- Criação de atalhos (Desktop + Start Menu)
+- Desinstalador automático
+- Assinatura SHA256 para verificação
+
+---
+
 *Desenvolvido com ❤️ por Nuno Salvação | Julho 2025*

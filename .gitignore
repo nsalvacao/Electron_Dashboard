@@ -135,4 +135,11 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# Projeto específico
+*.txt
+data/backups/
+0_Electron_Docs_Reference/Dev_Logs/*.log
+data/ai-costs/
+data/ai-config/
+
 0_Electron_Docs_Reference/
