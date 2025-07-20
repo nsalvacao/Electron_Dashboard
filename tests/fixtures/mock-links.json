@@ -1,0 +1,31 @@
+{
+  "links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "icon": "github.png",
+      "category": "Development",
+      "tags": ["git", "repository", "code"],
+      "description": "Code repository hosting",
+      "enabled": true
+    },
+    {
+      "name": "Google Search",
+      "url": "https://google.com",
+      "icon": "google.png",
+      "category": "Search",
+      "tags": ["search", "web"],
+      "description": "Search engine",
+      "enabled": true
+    },
+    {
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "icon": "so.png",
+      "category": "Development",
+      "tags": ["programming", "questions", "help"],
+      "description": "Programming Q&A site",
+      "enabled": true
+    }
+  ]
+}

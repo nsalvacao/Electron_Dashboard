@@ -1,0 +1,31 @@
+{
+  "apps": [
+    {
+      "name": "Visual Studio Code",
+      "path": "/path/to/vscode",
+      "icon": "vscode.png",
+      "category": "Development",
+      "tags": ["editor", "coding", "microsoft"],
+      "description": "Code editor for developers",
+      "enabled": true
+    },
+    {
+      "name": "Chrome Browser",
+      "path": "/path/to/chrome",
+      "icon": "chrome.png",
+      "category": "Internet",
+      "tags": ["browser", "web", "google"],
+      "description": "Web browser by Google",
+      "enabled": true
+    },
+    {
+      "name": "Photoshop CC",
+      "path": "/path/to/photoshop",
+      "icon": "ps.png",
+      "category": "Graphics",
+      "tags": ["photo", "editing", "adobe"],
+      "description": "Photo editing software",
+      "enabled": true
+    }
+  ]
+}

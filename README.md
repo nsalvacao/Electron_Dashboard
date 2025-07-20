@@ -547,12 +547,48 @@ O projeto inclui um sistema de CI/CD automatizado que:
 # Scripts otimizados para CI/CD
 npm run ci:install    # Instalação rápida de dependências
 npm run ci:build      # Build completo para Windows
-npm run ci:test       # Linting + Testes
+npm run ci:test       # Linting + Testes funcionais
 
 # Scripts de desenvolvimento
 npm run dist:win      # Build Windows local
 npm run clean         # Limpar dist/
 npm run generate-icons # Gerar ícones
+npm run test          # Executar testes localmente
+npm run lint          # Verificar código
+```
+
+### 🧪 Testes Automáticos
+
+O projeto inclui uma suite completa de testes funcionais:
+
+**Testes de Validação de Dados**
+- Estrutura e integridade dos ficheiros JSON (`apps_custom.json`, `links_web.json`)
+- Validação de campos obrigatórios e tipos de dados
+- Detecção de referências quebradas e dados duplicados
+
+**Smoke Tests Electron**
+- Verificação da estrutura da aplicação
+- Validação de configurações do Electron Builder
+- Testes de módulos principais sem UI
+
+**Validação de Assets**
+- Verificação de existência de ícones referenciados
+- Validação de tamanhos e formatos de ficheiros
+- Detecção de assets órfãos ou corrompidos
+
+**Testes de Funcionalidade**
+- Algoritmos de pesquisa e filtragem
+- Validação de configurações no package.json
+- Testes de performance e casos edge
+
+```bash
+# Executar todos os testes
+npm test
+
+# Executar testes específicos
+npm test -- --testPathPattern=data-validation
+npm test -- --testPathPattern=electron-smoke
+npm test -- --testPathPattern=assets-validation
 ```
 
 ### Requisitos do Sistema CI
