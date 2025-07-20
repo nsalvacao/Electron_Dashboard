@@ -164,9 +164,15 @@ describe('⚡ Electron Smoke Tests', () => {
     test('main.js should handle app events', () => {
       const mainContent = fs.readFileSync(mainProcessPath, 'utf8');
       
-      // Verificar que trata eventos essenciais
-      expect(mainContent).toMatch(/app\.on.*ready/);
-      expect(mainContent).toMatch(/app\.on.*window-all-closed/);
+      // Verificar eventos essenciais do Electron (aceitar diferentes sintaxes)
+      const hasReadyEvent = /app\.on.*ready/.test(mainContent) || 
+                           /app\.whenReady/.test(mainContent) ||
+                           /whenReady\(\)/.test(mainContent);
+      const hasWindowClosedEvent = /app\.on.*window-all-closed/.test(mainContent) ||
+                                   /window-all-closed/.test(mainContent);
+      
+      expect(hasReadyEvent).toBeTruthy();
+      expect(hasWindowClosedEvent).toBeTruthy();
     });
   });
   

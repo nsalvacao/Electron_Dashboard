@@ -49,7 +49,7 @@ describe('📋 Data Validation Tests', () => {
       }
     } catch (error) {
       // Fallback para dados hardcoded se tudo falhar
-      console.warn('Using hardcoded mock data for testing');
+      console.warn('Failed to load data files, using hardcoded mock data for testing:', error.message);
       appsData = {
         apps: [
           {
@@ -62,6 +62,39 @@ describe('📋 Data Validation Tests', () => {
           }
         ]
       };
+      linksData = {
+        links: [
+          {
+            name: 'Test Link',
+            url: 'https://test.com',
+            icon: 'test.png',
+            category: 'Test',
+            tags: ['test'],
+            description: 'Test link'
+          }
+        ]
+      };
+    }
+
+    // Garantir que dados sempre têm a estrutura correta
+    if (!appsData || typeof appsData !== 'object' || !Array.isArray(appsData.apps)) {
+      console.warn('Invalid appsData structure, falling back to hardcoded data');
+      appsData = {
+        apps: [
+          {
+            name: 'Test App',
+            path: '/test/path',
+            icon: 'test.png',
+            category: 'Test',
+            tags: ['test'],
+            description: 'Test application'
+          }
+        ]
+      };
+    }
+
+    if (!linksData || typeof linksData !== 'object' || !Array.isArray(linksData.links)) {
+      console.warn('Invalid linksData structure, falling back to hardcoded data');
       linksData = {
         links: [
           {

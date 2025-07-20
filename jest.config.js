@@ -39,6 +39,18 @@ module.exports = {
     '/assets/'
   ],
   
+  // Ignorar módulos específicos que causam conflitos
+  modulePathIgnorePatterns: [
+    '<rootDir>/0_Electron_Docs_Reference/',
+    '<rootDir>/node_modules/.cache/'
+  ],
+  
+  // Configuração do Haste para evitar conflitos de nomes
+  haste: {
+    enableSymlinks: false,
+    forceNodeFilesystemAPI: true
+  },
+  
   // Configuração de cobertura
   collectCoverage: false, // Ativar apenas quando necessário
   collectCoverageFrom: [
